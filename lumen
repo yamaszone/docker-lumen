@@ -1,0 +1,38 @@
+#!/bin/bash
+
+help(){
+	echo "Usage:"
+	printf "\t build\t: Build Lumen container.\n"
+	printf "\t down\t: Stop Lumen and associated services (e.g. DB).\n"
+	printf "\t enter\t: Enter Lumen container.\n"
+	printf "\t help\t: Show this help.\n"
+	printf "\t up\t: Launch Lumen app.\n"
+	exit 0
+}
+
+if [[ -z $1 ]];then
+	help
+	exit 0
+fi
+
+case $1 in
+	build)
+		sudo docker-compose build --no-cache
+		;;
+	up)
+		sudo docker-compose up -d
+		# TODO: Use a better strategy for the following temporary step.
+		sudo docker-compose exec php /bin/bash -c "cd /code/src \
+			&& composer install"
+		;;
+	down)
+		sudo docker-compose down
+		;;
+	-e | enter)
+		sudo docker-compose exec php /bin/bash -c "cd /code/src \
+			&& /bin/bash"
+		;;
+	* | -h | help)
+		help
+		;;
+esac

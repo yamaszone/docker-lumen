@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Simple script to allow BATS setup and run tests easily
+
+help(){
+	echo "Usage:"
+	printf "\t setup\t\t: Sets up BATS framework if not done already.\n"
+	printf "\t tests\t\t: Run tests.\n"
+	printf "\t help\t\t: Show this help.\n"
+	exit 0
+}
+
+run_tests(){
+	./setup
+
+	bats tests/bats
+}
+
+if [[ -z $1 ]];then
+	help
+	exit 0
+fi
+
+case $1 in
+	setup)
+		./setup
+		;;
+	tests)
+		run_tests
+		;;
+	* | help)
+		help
+		;;
+esac

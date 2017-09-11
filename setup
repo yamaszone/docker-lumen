@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# This script helps setup BATS framework without going through manual pains
+
+configure_bats_assert(){
+	# TechDebt: Although jasonkarns/bats-assert is deprecated in
+	# in favor of ztombol/bats-assert, some very useful assertions
+	# are yet to be supported by the latter. An issue to extend support
+	# (https://github.com/ztombol/bats-assert/issues/20) for the
+	# the missing libraries posted to upstream to allow us migrate.
+	# Configure bats-assert library if not configured already
+	LIB_REPO=https://github.com/jasonkarns/bats-assert.git
+	LIB_DIR=tests/bats/helpers/assertions
+	if [[ ! -d $LIB_DIR ]]; then
+		git clone -b v1.1.1 $LIB_REPO $LIB_DIR
+	fi
+}
+
+install_bats(){
+	# Install BATS framework if not installed already
+	type bats >/dev/null 2>&1
+	if [[ "$?" -ne "0" ]]; then
+		git clone -b v0.4.0 https://github.com/sstephenson/bats.git /tmp/bats
+
+		HOST_OS=$(cat /etc/os-release | grep ^NAME)
+		if [[ "$HOST_OS" == *"CoreOS"* ]]; then
+			cd /tmp/bats && sudo ./install.sh /opt
+		else
+			cd /tmp/bats && sudo ./install.sh /usr/local
+		fi
+		cd -
+		rm -rf /tmp/bats
+	fi
+}
+
+install_bats
+configure_bats_assert
+
