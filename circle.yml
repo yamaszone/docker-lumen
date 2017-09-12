@@ -13,5 +13,6 @@ dependencies:
 
 test:
   override:
+    - ./lumen up
     - ./run setup
     - ./run tests
