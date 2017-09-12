@@ -17,6 +17,10 @@ services:
             - ./code:/code
         networks:
             - code-network
+    postgres:
+        image: postgres:9.6-alpine
+        networks:
+            - code-network
 
 networks:
     code-network:
