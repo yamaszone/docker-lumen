@@ -1,12 +1,22 @@
-The Docker setup for PHP applications using PHP7-FPM and Nginx described in http://geekyplatypus.com/dockerise-your-php-application-with-nginx-and-php7-fpm
+Dockerized Laravel Lumen Micro Framework based on PHP7-FPM and Nginx
 
-## Instructions
+## Requirements
+* [Docker Engine](https://docs.docker.com/installation/)
+* [Docker Compose](https://docs.docker.com/compose/)
+
+## Quickstart
 1. Checkout the repository
-* ~~Create a record in your `hosts` file to point `php-docker.local` to your Docker environment~~
-* Run `docker-compose up`
-* ~~Navigate to php-docker.local:8080 in a browser~~
-* Navigate to localhost:8080
-
-That's it! You have your local PHP setup using Docker
-
-*Example of activated PHP logging* - https://github.com/mikechernev/dockerised-php/tree/feature/log-to-stdout
+2. From project root run the following command
+  - `./lumen up`
+  - Navigate to http://<host_ip_addr>:8080
+    - Should see "Lumen (5.5.0) (Laravel Components 5.5.*)"!
+3. Run `./lumen help` to see other convenient commands
+```sh
+$ ./lumen help
+Usage:
+         build  : Build Lumen container.
+         down   : Stop Lumen and associated services (e.g. DB).
+         enter  : Enter Lumen container.
+         help   : Show this help.
+         up     : Launch Lumen app.
+```
