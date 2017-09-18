@@ -11,8 +11,8 @@ services:
         networks:
             - code-network
     php:
-        #image: php:7.1-fpm-alpine
-        build: .
+        image: php:7.1-fpm-alpine
+        #build: .
         volumes:
             - ./code:/code
         networks:
