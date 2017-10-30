@@ -1,0 +1,15 @@
+version: "2.1"
+
+services:
+    web:
+        build:
+            context: ..
+            dockerfile: Dockerfile-nginx
+        image: yamaszone/nginx:1.13-alpine
+        ports:
+            - "8080:80"
+    php:
+        build:
+            context: ..
+            dockerfile: Dockerfile-php
+        image: yamaszone/php7-lumen:7.1-fpm-alpine

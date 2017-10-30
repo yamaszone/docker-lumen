@@ -1,0 +1,34 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: php7-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: php7
+    spec:
+      containers:
+      - name: php7
+        image: yamaszone/php7-lumen:7.1-fpm-alpine
+        ports:
+        - containerPort: 9000
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: yamaszone/nginx:1.13-alpine
+        ports:
+        - containerPort: 80

@@ -1,0 +1,15 @@
+FROM php:7.1-fpm-alpine
+
+MAINTAINER Mazedur Rahman <mazedur.rahman.liton@gmail.com>
+
+# Implicit deps: https://github.com/docker-library/php/issues/221
+RUN	apk --no-cache add \
+	postgresql-dev
+
+RUN docker-php-ext-install pdo_pgsql pgsql && \
+	docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+
+# Dev only
+#RUN pecl install xdebug
+
+COPY code/ /code

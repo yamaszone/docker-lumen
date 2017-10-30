@@ -1,0 +1,21 @@
+version: "2.1"
+
+services:
+    web:
+        image: yamaszone/nginx:1.13-alpine
+        ports:
+            - "8080:80"
+        networks:
+            - code-network
+    php:
+        image: yamaszone/php7-lumen:7.1-fpm-alpine
+        networks:
+            - code-network
+    postgres:
+        image: postgres:9.6-alpine
+        networks:
+            - code-network
+
+networks:
+    code-network:
+        driver: bridge
