@@ -1,4 +1,4 @@
-Dockerized Laravel Lumen Micro Framework based on PHP7-FPM and Nginx
+Dockerized Laravel Lumen Micro Framework based on PHP7-FPM, Nginx and Postgres for rapid prototyping of microservices
 
 ## Requirements
 * [Docker Engine](https://docs.docker.com/installation/)
