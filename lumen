@@ -22,8 +22,7 @@ case $1 in
 	up)
 		sudo docker-compose up -d
 		# TODO: Use a better strategy for the following temporary step.
-		sudo docker-compose exec php /bin/bash -c "cd /code/src \
-			&& composer install"
+		docker run --rm -it -v ${PWD}/code/src:/app composer:1.5 install
 		;;
 	down)
 		sudo docker-compose down
