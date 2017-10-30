@@ -17,18 +17,17 @@ fi
 
 case $1 in
 	build)
-		sudo docker-compose build --no-cache
+		docker-compose build --no-cache
 		;;
 	up)
-		sudo docker-compose up -d
-		# TODO: Use a better strategy for the following temporary step.
+		docker-compose up -d
 		docker run --rm -it -v ${PWD}/code/src:/app composer:1.5 install
 		;;
 	down)
-		sudo docker-compose down
+		docker-compose down
 		;;
 	-e | enter)
-		sudo docker-compose exec php /bin/bash -c "cd /code/src \
+		docker-compose exec php /bin/bash -c "cd /code/src \
 			&& /bin/bash"
 		;;
 	* | -h | help)
