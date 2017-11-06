@@ -27,8 +27,7 @@ case $1 in
 		docker-compose down
 		;;
 	-e | enter)
-		docker-compose exec php /bin/bash -c "cd /code/src \
-			&& /bin/bash"
+		docker-compose exec php /bin/sh -c "cd /code/src && /bin/sh"
 		;;
 	* | -h | help)
 		help

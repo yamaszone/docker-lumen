@@ -12,4 +12,4 @@ RUN docker-php-ext-install pdo_pgsql pgsql && \
 # Dev only
 #RUN pecl install xdebug
 
-COPY code/ /code
+COPY src/ /code/src

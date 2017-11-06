@@ -3,13 +3,18 @@ version: "2.1"
 services:
     web:
         build:
-            context: ..
+            context: ../code
             dockerfile: Dockerfile-nginx
         image: yamaszone/nginx:1.13-alpine
         ports:
             - "8080:80"
     php:
         build:
-            context: ..
+            context: ../code
             dockerfile: Dockerfile-php
         image: yamaszone/php7-lumen:7.1-fpm-alpine
+    db-migrator:
+        build:
+            context: ../code
+            dockerfile: Dockerfile-migrator
+        image: yamaszone/flask-migrate:latest
