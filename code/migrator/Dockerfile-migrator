@@ -1,0 +1,11 @@
+FROM python:3.5-alpine
+
+MAINTAINER Mazedur Rahman <mazedur.rahman.liton@gmail.com>
+
+RUN pip install flask-migrate
+
+ADD manage.py /src/manage.py
+
+ENV FLASK_APP /src/manage.py
+
+ENTRYPOINT ["flask"]
