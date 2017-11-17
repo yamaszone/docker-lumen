@@ -2,16 +2,16 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: php7-deployment
+  name: php-deployment
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       labels:
-        app: php7
+        app: php
     spec:
       containers:
-      - name: php7
+      - name: php
         image: yamaszone/php7-lumen:7.1-fpm-alpine
         ports:
         - containerPort: 9000

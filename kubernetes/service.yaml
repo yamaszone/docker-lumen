@@ -5,7 +5,7 @@ metadata:
   name: php
   namespace: default
   labels:
-    app: php7
+    app: php
 spec:
   ports:
   - name: listener
@@ -13,14 +13,13 @@ spec:
     port: 9000
     targetPort: 9000
   selector:
-    app: php7
-  type: NodePort
+    app: php
   sessionAffinity: None
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: nginx-svc
+  name: nginx
   namespace: default
   labels:
     app: nginx
@@ -32,5 +31,7 @@ spec:
     targetPort: 80
   selector:
     app: nginx
-  type: LoadBalancer
+  type: NodePort
+  # Use LoadBalancer type if supported by the cloud provider
+  #type: LoadBalancer
   sessionAffinity: None
