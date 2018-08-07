@@ -15,6 +15,22 @@ spec:
         image: yamaszone/php7-lumen:7.1-fpm-alpine
         ports:
         - containerPort: 9000
+        env:
+          - name: DB_CONNECTION
+            value: pgsql
+          - name: DB_HOST
+            value: postgres
+          - name: DB_PORT
+            value: "5432"
+          - name: DB_DATABASE
+            value: lumen_db
+          - name: DB_USERNAME
+            value: lumen
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: pgpass
+                key: password
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
